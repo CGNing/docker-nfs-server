@@ -24,4 +24,4 @@ jobs:
       uses: docker/build-push-action@v7
       with:
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/myimage:latest
+        tags: ghcr.io/cgning/myimage:latest
