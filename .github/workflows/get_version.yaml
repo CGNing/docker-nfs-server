@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get v tags
+      id: get_tag
       run: |
         TAG=$(curl -s \
           -H "Accept: application/vnd.github+json" \
