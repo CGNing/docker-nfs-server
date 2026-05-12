@@ -15,4 +15,9 @@ jobs:
           | jq -r '.[].name | select(startswith("v"))' \
           | head -n 10)
         echo $TAG
+        TEMP=$(curl -s \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/tags)
+        echo $TEMP
         # echo "tag=$TAG" >> "$GITHUB_OUTPUT"
