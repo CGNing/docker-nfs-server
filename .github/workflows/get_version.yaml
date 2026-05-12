@@ -2,15 +2,15 @@ name: get version
 on:
   workflow_dispatch:
 jobs:
-  build:
+  get:
     runs-on: ubuntu-latest
-  steps:
-    run: |
-    TAG=$(curl -s \
-      -H "Accept: application/vnd.github+json" \
-      -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-      https://api.github.com/repos/${{ github.repository }}/tags \
-      | jq -r '.[].name | select(startswith("v"))' \
-      | head -n 10)
-
-    echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+    steps:
+    - name: Get v tags
+      run: |
+        TAG=$(curl -s \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/tags \
+          | jq -r '.[].name | select(startswith("v"))' \
+          | head -n 10)
+        echo "tag=$TAG" >> "$GITHUB_OUTPUT"
