@@ -14,4 +14,5 @@ jobs:
           https://api.github.com/repos/${{ github.repository }}/tags \
           | jq -r '.[].name | select(startswith("v"))' \
           | head -n 10)
-        echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+        echo $TAG
+        # echo "tag=$TAG" >> "$GITHUB_OUTPUT"
